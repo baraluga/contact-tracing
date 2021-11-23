@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MainFormComponent } from './main-form.component';
 
 @NgModule({
@@ -20,6 +22,8 @@ import { MainFormComponent } from './main-form.component';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    MatCheckboxModule,
   ],
   exports: [MainFormComponent],
 })
