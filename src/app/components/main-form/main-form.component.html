@@ -1,12 +1,28 @@
 <div
   class="main-form"
   fxLayout="column"
-  fxLayoutAlign="start stretch"
-  fxLayoutGap="16px"
+  fxLayoutAlign="space-between stretch"
+  fxLayoutGap="64px"
   fxFlex="60"
 >
-  <mat-form-field appearance="outline">
-    <mat-label>Full Name</mat-label>
-    <input matInput />
-  </mat-form-field>
+  <!-- form inputs -->
+  <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input matInput [(ngModel)]="mainForm.fullName" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="mainForm.date" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="16px">
+    <button mat-stroked-button color="warn">CLEAR</button>
+    <button fxflex="" mat-flat-button color="primary" (click)="onSubmit()">
+      SUBMIT
+    </button>
+  </div>
 </div>

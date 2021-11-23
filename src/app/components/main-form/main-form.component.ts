@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
+interface TracingMainForm {
+  fullName: string;
+  date: Date | undefined;
+}
+
 @Component({
   selector: 'app-main-form',
   templateUrl: './main-form.component.html',
-  styleUrls: ['./main-form.component.scss']
+  styleUrls: ['./main-form.component.scss'],
 })
-export class MainFormComponent implements OnInit {
+export class MainFormComponent {
+  mainForm: TracingMainForm = {
+    fullName: '',
+    date: undefined,
+  };
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onSubmit(): void {
+    console.log(this.mainForm);
   }
-
 }
