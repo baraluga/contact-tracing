@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +17,7 @@ import { MainFormModule } from './components/main-form/main-form.module';
     MatButtonModule,
     MatCheckboxModule,
     MainFormModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -31,16 +31,35 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="end start">
-      <mat-checkbox color="primary" [(ngModel)]="mainForm.noSymptoms">
-        I don't have any COVID-19 symptoms
-      </mat-checkbox>
-    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Experienced Symptoms</mat-label>
+      <mat-select multiple [(ngModel)]="mainForm.experiencedSymptoms">
+        <mat-option
+          *ngFor="let symptom of symptoms$ | async"
+          [value]="symptom.id"
+        >
+          {{ symptom.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="16px">
-    <button mat-stroked-button color="warn" (click)="onClear()">CLEAR</button>
-    <button fxflex="" mat-flat-button color="primary" (click)="onSubmit()">
+    <button
+      mat-stroked-button
+      color="warn"
+      (click)="onClear()"
+      [disabled]="shouldDisable"
+    >
+      CLEAR
+    </button>
+    <button
+      fxflex=""
+      mat-flat-button
+      color="primary"
+      (click)="onSubmit()"
+      [disabled]="submitting$ | async"
+    >
       SUBMIT
     </button>
   </div>

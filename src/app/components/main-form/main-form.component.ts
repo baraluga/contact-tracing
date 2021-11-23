@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { MainFormService } from './main-form.service';
-
-interface TracingMainForm {
-  fullName?: string;
-  date?: Date | undefined;
-  establishment?: string;
-  noSymptoms?: boolean;
-}
+import { Observable, take } from 'rxjs';
+import { ContactTracingDetails } from './main-form.models';
+import { MainFormService, Symptom } from './main-form.service';
 
 @Component({
   selector: 'app-main-form',
@@ -16,16 +10,30 @@ interface TracingMainForm {
   providers: [MainFormService],
 })
 export class MainFormComponent {
-  mainForm: TracingMainForm = {};
+  mainForm: ContactTracingDetails = {};
 
   get establishments$(): Observable<string[]> {
     return this.service.getEstablishments();
   }
 
-  constructor(private service: MainFormService) {}
+  get symptoms$(): Observable<Symptom[]> {
+    return this.service.getPrevailingSymptoms();
+  }
+
+  get shouldDisable(): boolean {
+    return Object.values(this.mainForm).filter((val) => !!val).length === 0;
+  }
+
+  get submitting$(): Observable<boolean> {
+    return this.service.getLoadingState();
+  }
+
+  constructor(private service: MainFormService) {
+    this.service.getAnimals().pipe(take(1)).subscribe();
+  }
 
   onSubmit(): void {
-    console.log(this.mainForm);
+    this.service.submitContractTracing(this.mainForm).pipe(take(1)).subscribe();
   }
 
   onClear(): void {
