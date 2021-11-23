@@ -5,6 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { MainFormModule } from './components/main-form/main-form.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
+    MainFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
