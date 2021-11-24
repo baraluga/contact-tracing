@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -18,12 +18,12 @@ import { MainFormComponent } from './main-form.component';
     FlexLayoutModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
+    ReactiveFormsModule,
   ],
   exports: [MainFormComponent],
 })

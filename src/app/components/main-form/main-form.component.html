@@ -6,22 +6,28 @@
   fxFlex="60"
 >
   <!-- form inputs -->
-  <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+  <div
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap="16px"
+    [formGroup]="reactiveMainForm"
+  >
     <mat-form-field appearance="outline">
       <mat-label>Full Name</mat-label>
-      <input matInput [(ngModel)]="mainForm.fullName" />
+      <input matInput formControlName="name" />
+      <mat-error> This field is invalid </mat-error>
     </mat-form-field>
 
     <div fxLayout="row" fxLayoutGap="16px">
       <mat-form-field appearance="fill" fxFlex>
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="mainForm.date" />
+        <input matInput [matDatepicker]="picker" formControlName="date" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="fill" fxFlex>
         <mat-label>Establishment</mat-label>
-        <mat-select [(ngModel)]="mainForm.establishment">
+        <mat-select formControlName="establishment">
           <mat-option
             *ngFor="let establishment of establishments$ | async"
             [value]="establishment"
@@ -33,7 +39,7 @@
     </div>
     <mat-form-field appearance="fill">
       <mat-label>Experienced Symptoms</mat-label>
-      <mat-select multiple [(ngModel)]="mainForm.experiencedSymptoms">
+      <mat-select multiple formControlName="symptoms">
         <mat-option
           *ngFor="let symptom of symptoms$ | async"
           [value]="symptom.id"
@@ -45,14 +51,7 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="16px">
-    <button
-      mat-stroked-button
-      color="warn"
-      (click)="onClear()"
-      [disabled]="shouldDisable"
-    >
-      CLEAR
-    </button>
+    <button mat-stroked-button color="warn" (click)="onClear()">CLEAR</button>
     <button
       fxflex=""
       mat-flat-button
